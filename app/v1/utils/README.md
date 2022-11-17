@@ -1,0 +1,1 @@
+Estos scrips permiten la conexion con postgresql
