@@ -6,6 +6,6 @@ app.include_router(user_router)
 
 @app.get('/')
 def home():
-    return {"Ir a url/docs para ver la api"}
+    return {"Ir a /docs para ver la api"}
 
 #uvicorn main:app --reload
