@@ -19,6 +19,10 @@ def create_user(user: user_schema.UserRegister):
         username=user.username,
         email=user.email,
         password=get_password_hash(user.password)
+        #aqui estas recuperando la informacion de la password del objeto usuario con el metodo password. Lo mis mo debes
+        # hacer con el problema que tienes para solicitar los ingresos
+        # creo que esto te puede aterrizar un poco mas la idea :)
+        # pd: sorry por no poder ayudar mas :( 
     )
 
     db_user.save()

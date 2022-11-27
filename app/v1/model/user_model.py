@@ -10,3 +10,5 @@ class User(peewee.Model):
 
     class Meta:
         database = db
+
+    
