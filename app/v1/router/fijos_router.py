@@ -18,13 +18,44 @@ router = APIRouter(
 @router.post(
     "/Fijos/",
     status_code=status.HTTP_201_CREATED,
-    response_model=fijos_schema.Fijos_Schema,
+    response_model=str,
     dependencies=[Depends(get_db)],
     summary="Crea un nuevo gasto fijo"
 )
 def create_fijos(fijos: fijos_schema.Fijos_Schema = Body(...)):
 
-    return fijos_schema.save_services(fijos)
+    return fijos_services.save_services(fijos)
+
+@router.delete(
+    "/Delete/",
+    status_code=status.HTTP_200_OK,
+    response_model=str,
+    dependencies=[Depends(get_db)],
+    summary="Elimina el gasto fijo creado anteriormente"
+)
+def delete_fijos(ID:int):
+
+    return fijos_services.delete_services(ID)
 
 
+@router.put(
+    "/Actualizar/",
+    status_code=status.HTTP_200_OK,
+    response_model=str,
+    dependencies=[Depends(get_db)],
+    summary="Actualiza el gasto fijo"
+)
+def put_fijos(ID:int,fijos: fijos_schema.Fijos_Schema = Body(...)):
 
+    return fijos_services.update_services(fijos,ID)
+
+@router.get(
+    "/SeleccionarporID/",
+    status_code=status.HTTP_200_OK,
+    response_model=list,
+    dependencies=[Depends(get_db)],
+    summary="selecciona por Usuario"
+)
+def seleccionarporusuario(ID:int):
+
+    return fijos_services.seleccionarporusuario(ID)

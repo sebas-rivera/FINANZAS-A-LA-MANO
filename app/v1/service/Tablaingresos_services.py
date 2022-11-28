@@ -59,11 +59,3 @@ def seleccionarporusuario(ID:int):
         return list(ListaIngresos)
     except:
         return []
-
-
-    
-
-    
-        
-
-

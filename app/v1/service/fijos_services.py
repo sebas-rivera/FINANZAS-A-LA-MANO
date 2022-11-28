@@ -15,9 +15,10 @@ def fijos_serv(item)-> dict:
 
 def save_services(FijosToday:Fijos_Schema):
     try:
+        print(1)
         db_Fijos=Fijos(
             Valor= FijosToday.Valor,
-            ServicioS = FijosToday.Servicios,
+            Servicios = FijosToday.Servicios,
             Mobil =  FijosToday.Mobil,
             Internet =  FijosToday.Internet,
             Transporte= FijosToday.Transporte,
@@ -46,3 +47,11 @@ def update_services(FijosToday:Fijos_Schema,ID:int):
         return "Ha sido actualizado exitosamente la base de datos"
     except:
         return "No ha podido actualizarse exitosamente la base de datos"
+
+def seleccionarporusuario(ID:int):
+    try:
+        ListaFijos = Fijos().select().where(Fijos.user==ID).execute()
+        print(type(ListaFijos))
+        return list(ListaFijos)
+    except:
+        return []

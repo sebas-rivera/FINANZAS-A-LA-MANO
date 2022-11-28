@@ -1,5 +1,5 @@
-from datetime import date
 import peewee
+from datetime import date
 from app.v1.utils.db import db
 from .user_model import User
 

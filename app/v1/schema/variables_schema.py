@@ -2,21 +2,13 @@ from pydantic import BaseModel
 from typing import Union
 
 class Variables_Schema(BaseModel):
+    Descripcion:str
     Valor:float
-    Credito:str
-    Debito: str
-    Efectivo:str
+    Credito:bool
+    Debito: bool
+    Efectivo:bool
     Dia:str
     user:str
-
-    def __init__(self,Valor,Credito,Debito,Efectivo,Dia,user) -> None:
-        self.Valor=Valor
-        self.Credito=Credito
-        self.Debito=Debito
-        self.Efectivo=Efectivo
-        self.Dia=Dia
-        self.user=user
-
 
 
     
