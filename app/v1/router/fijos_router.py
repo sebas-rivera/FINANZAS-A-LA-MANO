@@ -5,8 +5,7 @@ from fastapi import Body
 from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import fijos_schema
 from app.v1.service import fijos_services
-from app.v1.service import fijos_services
-from app.v1.schema.fijos_schema import Fijos_Schema
+from app.v1.schema.fijos_schema import Fijos_Schema,Fijos2_Schema
 from app.v1.utils.db import get_db
 
 router = APIRouter(
@@ -26,6 +25,30 @@ def create_fijos(fijos: fijos_schema.Fijos_Schema = Body(...)):
 
     return fijos_services.save_services(fijos)
 
+@router.get(
+    "/SeleccionarporID/",
+    status_code=status.HTTP_200_OK,
+    response_model=list,
+    dependencies=[Depends(get_db)],
+    summary="selecciona por Usuario"
+)
+def seleccionarporusuario(ID:int):
+    
+    return fijos_services.seleccionarporusuario(ID)
+
+
+
+@router.put(
+    "/Actualizar/",
+    status_code=status.HTTP_200_OK,
+    response_model=str,
+    dependencies=[Depends(get_db)],
+    summary="Actualiza el gasto fijo"
+)
+def put_fijos(ID:int,fijos: fijos_schema.Fijos2_Schema = Body(...)):
+
+    return fijos_services.update_services(fijos,ID)
+
 @router.delete(
     "/Delete/",
     status_code=status.HTTP_200_OK,
@@ -36,26 +59,3 @@ def create_fijos(fijos: fijos_schema.Fijos_Schema = Body(...)):
 def delete_fijos(ID:int):
 
     return fijos_services.delete_services(ID)
-
-
-@router.put(
-    "/Actualizar/",
-    status_code=status.HTTP_200_OK,
-    response_model=str,
-    dependencies=[Depends(get_db)],
-    summary="Actualiza el gasto fijo"
-)
-def put_fijos(ID:int,fijos: fijos_schema.Fijos_Schema = Body(...)):
-
-    return fijos_services.update_services(fijos,ID)
-
-@router.get(
-    "/SeleccionarporID/",
-    status_code=status.HTTP_200_OK,
-    response_model=list,
-    dependencies=[Depends(get_db)],
-    summary="selecciona por Usuario"
-)
-def seleccionarporusuario(ID:int):
-
-    return fijos_services.seleccionarporusuario(ID)

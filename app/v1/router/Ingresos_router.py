@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import ingresos_schema
 from app.v1.service import Tablaingresos_services
 from app.v1.service import Tablaingresos_services
-from app.v1.schema.ingresos_schema import Ingresos_Schema
+from app.v1.schema.ingresos_schema import Ingresos_Schema,Ingresos2_Schema
 from app.v1.utils.db import get_db
 
 
@@ -27,28 +27,6 @@ def create_ingresos(ingresos: ingresos_schema.Ingresos_Schema = Body(...)):
 
     return Tablaingresos_services.save_services(ingresos)
 
-@router.delete(
-    "/Delete/",
-    status_code=status.HTTP_200_OK,
-    response_model=str,
-    dependencies=[Depends(get_db)],
-    summary="Elimina el ingreso creado anteriormente"
-)
-def delete_ingresos(ID:int):
-
-    return Tablaingresos_services.delete_services(ID)
-
-@router.put(
-    "/Actualizar/",
-    status_code=status.HTTP_200_OK,
-    response_model=str,
-    dependencies=[Depends(get_db)],
-    summary="Actualiza el ingreso"
-)
-def put_ingresos(ID:int,ingresos: ingresos_schema.Ingresos_Schema = Body(...)):
-
-    return Tablaingresos_services.update_services(ingresos,ID)
-
 @router.get(
     "/SeleccionarporID/",
     status_code=status.HTTP_200_OK,
@@ -59,3 +37,26 @@ def put_ingresos(ID:int,ingresos: ingresos_schema.Ingresos_Schema = Body(...)):
 def seleccionarporusuario(ID:int):
 
     return Tablaingresos_services.seleccionarporusuario(ID)
+
+
+@router.put(
+    "/Actualizar/",
+    status_code=status.HTTP_200_OK,
+    response_model=str,
+    dependencies=[Depends(get_db)],
+    summary="Actualiza el ingreso"
+)
+def put_ingresos(ID:int,ingresos: ingresos_schema.Ingresos2_Schema = Body(...)):
+
+    return Tablaingresos_services.update_services(ingresos,ID)
+
+@router.delete(
+    "/Delete/",
+    status_code=status.HTTP_200_OK,
+    response_model=str,
+    dependencies=[Depends(get_db)],
+    summary="Elimina el ingreso creado anteriormente"
+)
+def delete_ingresos(ID:int):
+
+    return Tablaingresos_services.delete_services(ID)

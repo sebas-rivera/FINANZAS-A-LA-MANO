@@ -7,4 +7,9 @@ class Ingresos_Schema(BaseModel):
     Valor: float
     user:str
 
+class Ingresos2_Schema(BaseModel):
+    Dia:str
+    Descripcion:str
+    Valor: float
+
 

@@ -10,5 +10,13 @@ class Variables_Schema(BaseModel):
     Dia:str
     user:str
 
+class Variables2_Schema(BaseModel):
+    Descripcion:str
+    Valor:float
+    Credito:bool
+    Debito: bool
+    Efectivo:bool
+    Dia:str
+    
 
     
