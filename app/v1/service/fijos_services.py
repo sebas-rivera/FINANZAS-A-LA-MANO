@@ -1,6 +1,9 @@
 from app.v1.model.fijos_model import Fijos
 from app.v1.schema.fijos_schema import Fijos_Schema,Fijos2_Schema
 
+"""
+Se crea diccionario con las claves-valor respectivas
+""" 
 def fijos_serv(item)-> dict:
     return {
         "Valor": item["Valor"],
@@ -13,6 +16,10 @@ def fijos_serv(item)-> dict:
         "user":item["user"]
     }
 
+
+"""
+Definimos el metodo guardar. Eventualmente será la base para el metodo post
+""" 
 def save_services(FijosToday:Fijos_Schema):
     try:
         print(1)
@@ -31,6 +38,9 @@ def save_services(FijosToday:Fijos_Schema):
     except: 
         return "Ha ocurrido un error en el guardado del gasto fijo del mes actual" 
 
+"""
+Definimos el metodo leer-consultar. Eventualmente será la base para el metodo get
+""" 
 def seleccionarporusuario(ID:int):
     try:
         ListaFijos = Fijos().select().where(Fijos.user==ID).execute()
@@ -60,6 +70,9 @@ def update_services1(FijosToday:Fijos_Schema,ID:int):
     except:
         return "No ha podido actualizarse exitosamente la base de datos"
 
+"""
+Definimos el metodo actualizar. Eventualmente será la base para el metodo put
+""" 
 def update_services(FijosToday:Fijos2_Schema,ID:int):
     try:
         row:Fijos=Fijos.get(Fijos.id==ID)
@@ -76,6 +89,9 @@ def update_services(FijosToday:Fijos2_Schema,ID:int):
         return "No ha podido actualizarse exitosamente la base de datos"
 
 
+"""
+Definimos el metodo eliminar. Eventualmente será la base para el metodo delete
+""" 
 def delete_services(ID:int):
     try:
         Fijos().delete().where(Fijos.id==ID).execute()

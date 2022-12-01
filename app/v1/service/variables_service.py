@@ -2,7 +2,9 @@ from app.v1.model.variables_model import  Variables
 from app.v1.schema.variables_schema import Variables_Schema,Variables2_Schema
 
 
-
+"""
+Se crea diccionario con las claves-valor respectivas
+""" 
 def variables_serv(item)-> dict:
     return {
         "Descripcion": item["Descripcion"],
@@ -14,7 +16,9 @@ def variables_serv(item)-> dict:
         "user": item["user"]
     }
 
-
+"""
+Definimos el metodo guardar. Eventualmente será la base para el metodo post
+""" 
 def save_services(VariablesToday:Variables_Schema):
     try:
         db_variables= Variables(
@@ -30,7 +34,10 @@ def save_services(VariablesToday:Variables_Schema):
         return  "Ha sido guardado exitosamente el gasto fijo del mes actual"
     except:
         return "No ha sido guardado "
-        
+
+"""
+Definimos el metodo leer-consultar. Eventualmente será la base para el metodo get
+"""         
 def seleccionarporusuario(ID:int):
     try:
         Listavariables= Variables().select().where(Variables.user==ID).execute()
@@ -38,6 +45,7 @@ def seleccionarporusuario(ID:int):
         return list(Listavariables)
     except:
         return []
+
 
 
 def update_services1(VariablesToday:Variables_Schema,ID:int):
@@ -60,6 +68,9 @@ def update_services1(VariablesToday:Variables_Schema,ID:int):
     except:
         return "No ha podido actualizarse exitosamente la base de datos"
 
+"""
+Definimos el metodo actualizar. Eventualmente será la base para el metodo put
+""" 
 def update_services(VariablesToday:Variables2_Schema,ID:int):
     try:
 
@@ -77,6 +88,9 @@ def update_services(VariablesToday:Variables2_Schema,ID:int):
     except:
         return "No ha podido actualizarse exitosamente la base de datos"
 
+"""
+Definimos el metodo eliminar. Eventualmente será la base para el metodo delete
+""" 
 def delete_services(ID:int):
     try:
         Variables().delete().where(Variables.id==ID).execute()

@@ -8,12 +8,18 @@ from app.v1.service import retiros_services
 from app.v1.schema.retiros_schema import Retiros_Schema,Retiros2_Schema
 from app.v1.utils.db import get_db
 
+"""
+Se define ruta para retiros
+""" 
 router = APIRouter(
     prefix="/api/v1/retiros",
     
     tags=["Retiros"]
 )
 
+"""
+Se habilita la creacion de retiros
+""" 
 @router.post(
     "/Retiros/",
     status_code=status.HTTP_201_CREATED,
@@ -25,6 +31,9 @@ def create_retiros(retiros: retiros_schema.Retiros_Schema = Body(...)):
 
     return retiros_services.save_services(retiros)
 
+"""
+Se habilita la consulta de retiros
+""" 
 @router.get(
     "/SeleccionarporID/",
     status_code=status.HTTP_200_OK,
@@ -36,7 +45,9 @@ def seleccionarporusuario(ID:int):
 
     return retiros_services.seleccionarporusuario(ID)
     
-
+"""
+Se habilita la actualizacion de retiros
+""" 
 @router.put(
     "/Actualizar/",
     status_code=status.HTTP_200_OK,
@@ -48,6 +59,9 @@ def put_retiros(ID:int,retiros: retiros_schema.Retiros2_Schema = Body(...)):
 
     return retiros_services.update_services(retiros,ID)
 
+"""
+Se habilita la eliminacion de retiros
+""" 
 @router.delete(
     "/Delete/",
     status_code=status.HTTP_200_OK,

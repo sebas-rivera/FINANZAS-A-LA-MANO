@@ -9,6 +9,9 @@ from app.v1.service import variables_service
 from app.v1.schema.variables_schema import Variables_Schema,Variables2_Schema
 from app.v1.utils.db import get_db
 
+"""
+Se define ruta para gastos variables
+""" 
 
 router = APIRouter(
     prefix="/api/v1/variables",
@@ -16,6 +19,9 @@ router = APIRouter(
     tags=["Variables"]
 )
 
+"""
+Se habilita la creacion de gastos variables
+""" 
 @router.post(
     "/Variables/",
     status_code=status.HTTP_201_CREATED,
@@ -27,6 +33,9 @@ def create_ingresos(variables: variables_schema.Variables_Schema= Body(...)):
 
     return variables_service.save_services(variables)
 
+"""
+Se habilita la consulta de gastos variables
+""" 
 @router.get(
     "/SeleccionarporID/",
     status_code=status.HTTP_200_OK,
@@ -39,6 +48,9 @@ def seleccionarporusuario(ID:int):
     return variables_service.seleccionarporusuario(ID)
 
 
+"""
+Se habilita la actualizacion de gastos variables
+""" 
 @router.put(
     "/Actualizar/",
     status_code=status.HTTP_200_OK,
@@ -50,6 +62,9 @@ def put_variables(ID:int,variables:variables_schema.Variables2_Schema = Body(...
 
     return variables_service.update_services(variables,ID)
 
+"""
+Se habilita la eliminacion de gastos variables
+""" 
 @router.delete(
     "/Delete/",
     status_code=status.HTTP_200_OK,

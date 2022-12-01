@@ -8,12 +8,18 @@ from app.v1.service import fijos_services
 from app.v1.schema.fijos_schema import Fijos_Schema,Fijos2_Schema
 from app.v1.utils.db import get_db
 
+"""
+Se define ruta-URL para gastos fijos
+""" 
 router = APIRouter(
     prefix="/api/v1/fijos",
 
     tags=["Fijos"]
 )
 
+"""
+Se habilita la creacion de gastos fijos
+""" 
 @router.post(
     "/Fijos/",
     status_code=status.HTTP_201_CREATED,
@@ -25,6 +31,9 @@ def create_fijos(fijos: fijos_schema.Fijos_Schema = Body(...)):
 
     return fijos_services.save_services(fijos)
 
+"""
+Se habilita la consulta de gastos fijos
+""" 
 @router.get(
     "/SeleccionarporID/",
     status_code=status.HTTP_200_OK,
@@ -36,7 +45,9 @@ def seleccionarporusuario(ID:int):
     
     return fijos_services.seleccionarporusuario(ID)
 
-
+"""
+Se habilita la actualizacion de gastos fijos
+""" 
 
 @router.put(
     "/Actualizar/",
@@ -49,6 +60,9 @@ def put_fijos(ID:int,fijos: fijos_schema.Fijos2_Schema = Body(...)):
 
     return fijos_services.update_services(fijos,ID)
 
+"""
+Se habilita la eliminacion de gastos fijos
+""" 
 @router.delete(
     "/Delete/",
     status_code=status.HTTP_200_OK,

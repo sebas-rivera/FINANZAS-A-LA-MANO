@@ -9,13 +9,18 @@ from app.v1.service import Tablaingresos_services
 from app.v1.schema.ingresos_schema import Ingresos_Schema,Ingresos2_Schema
 from app.v1.utils.db import get_db
 
-
+"""
+Se define ruta para gastos ingresos
+""" 
 router = APIRouter(
     prefix="/api/v1/ingresos",
     
     tags=["Ingresos"]
 )
 
+"""
+Se habilita la creacion de ingresos
+""" 
 @router.post(
     "/Ingresos/",
     status_code=status.HTTP_201_CREATED,
@@ -27,6 +32,9 @@ def create_ingresos(ingresos: ingresos_schema.Ingresos_Schema = Body(...)):
 
     return Tablaingresos_services.save_services(ingresos)
 
+"""
+Se habilita la consulta de ingresos
+""" 
 @router.get(
     "/SeleccionarporID/",
     status_code=status.HTTP_200_OK,
@@ -38,6 +46,9 @@ def seleccionarporusuario(ID:int):
 
     return Tablaingresos_services.seleccionarporusuario(ID)
 
+"""
+Se habilita la actualizacion de ingresos
+""" 
 
 @router.put(
     "/Actualizar/",
@@ -50,6 +61,9 @@ def put_ingresos(ID:int,ingresos: ingresos_schema.Ingresos2_Schema = Body(...)):
 
     return Tablaingresos_services.update_services(ingresos,ID)
 
+"""
+Se habilita la eliminacion de ingresos
+""" 
 @router.delete(
     "/Delete/",
     status_code=status.HTTP_200_OK,
