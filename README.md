@@ -1,9 +1,11 @@
-<h1 align="center"> FINANZAS A LA MANO </h1>
-
 <p align="center">
-<img src="https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green">
+  <img src="https://gcdnb.pbrd.co/images/uKQW8llDLDyZ.jpg?o=1" />
 </p>
 
+<h4 align="center">
+:construction: Proyecto en construcción :construction:
+</h4>
+ 
 ## 🛠️ Abre y ejecuta el proyecto
 
 Posterior a descargar el proyecto cree la base de datos en postgresql posterior a esto en un archivo con nombre ".env" en la misma ubicación del main y agregue las siguientes lineas de codigo:
@@ -28,7 +30,7 @@ Posterior a esto ejecute los siguientes comandos que crearan las tablas dentro d
 - `Funcionalidad 2a`: descripción de la funcionalidade 2a relacionada con la funcionalidad 2- 
 - `Funcionalidad 3`: descripción de la funcionalidad 3
 
-Planteamiento del problema.
+## :book:Planteamiento del problema.
 
 La vida cotidiana ha tenido una transformación increíble durante el siglo XXI, siendo los avances tecnológicos uno de los grandes protagonistas de esta transformación, pues no es para nadie un secreto que en la vida cotidiana actual nos vemos (una gran cantidad de personas) obligados a utilizar dispositivos tecnológicos que sirven de herramientas para permitirnos una interacción mucho más rápida con un mundo globalizado y para acceder a las múltiples herramientas que este brinda. Así con la facilidad de poder llegar de manera más rápida y fácil a un publico en constante crecimiento, las estrategias de marketing y de publicidad de grandes, medianas y pequeñas marcas se ven interesadas en ofrecer la mayor cantidad de productos e impactar de manera considerable en su público objetivo y nosotros como potenciales consumidores muchas veces sucumbimos a estás estrategias y podemos en muchas ocasiones hacer un mal uso de nuestras finanzas personales y llegar a fin de mes con bastantes preocupaciones. 
 
