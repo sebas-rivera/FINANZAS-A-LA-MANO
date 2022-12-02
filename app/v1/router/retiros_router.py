@@ -2,11 +2,13 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
 from fastapi import Body
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import retiros_schema
 from app.v1.service import retiros_services
 from app.v1.schema.retiros_schema import Retiros_Schema,Retiros2_Schema
 from app.v1.utils.db import get_db
+import os
 
 """
 Se define ruta para retiros
@@ -72,3 +74,17 @@ Se habilita la eliminacion de retiros
 def delete_retiros(ID:int):
 
     return retiros_services.delete_services(ID)
+
+"""
+Se habilita creacion de imagenes de retiros
+""" 
+@router.get(
+    "/Imagen/",
+    responses={200: {"description": "Grafica de sus gastos"}}
+)
+def Imagen(ID:int):
+    retiros_services.suma(ID)
+    file_path = os.path.join("Retiros.jpg")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="image/jpeg", filename="Retiros.jpg")
+    return {"error" : "File not found!"}

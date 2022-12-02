@@ -1,6 +1,6 @@
 from fastapi import FastAPI,Body
 from app.v1.router.user_router import router as user_router
-from app.v1.router.Ingresos_router import router as Ingresos_router
+from app.v1.router.ingresos_router import router as Ingresos_router
 from app.v1.router.fijos_router import router as Fijos_router
 from app.v1.router.variables_router import router as Variables_router
 from app.v1.router.retiros_router import router as Retiros_router

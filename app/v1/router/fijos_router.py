@@ -2,11 +2,13 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
 from fastapi import Body
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import fijos_schema
 from app.v1.service import fijos_services
 from app.v1.schema.fijos_schema import Fijos_Schema,Fijos2_Schema
 from app.v1.utils.db import get_db
+import os
 
 """
 Se define ruta-URL para gastos fijos
@@ -73,3 +75,17 @@ Se habilita la eliminacion de gastos fijos
 def delete_fijos(ID:int):
 
     return fijos_services.delete_services(ID)
+
+"""
+Se habilita creacion de imagenes de gastos fijos
+""" 
+@router.get(
+    "/Imagen/",
+    responses={200: {"description": "Grafica de sus gastos"}}
+)
+def Imagen(ID:int):
+    fijos_services.suma(ID)
+    file_path = os.path.join("Fijos.jpg")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="image/jpeg", filename="Fijos.jpg")
+    return {"error" : "File not found!"}

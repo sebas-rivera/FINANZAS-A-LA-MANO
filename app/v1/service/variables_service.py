@@ -1,5 +1,8 @@
 from app.v1.model.variables_model import  Variables
 from app.v1.schema.variables_schema import Variables_Schema,Variables2_Schema
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 """
@@ -98,3 +101,37 @@ def delete_services(ID:int):
     except:
         return "No ha podido eliminarse correctamente"
 
+"""
+Definimos el metodo sumar. Eventualmente será la base para el retorno de imagenes
+""" 
+def suma(ID:int):
+    try:
+        query  = Variables().select().where(Variables.user==ID).execute()
+        df = pd.DataFrame(query.dicts())
+        df["year"] = pd.DatetimeIndex(df['Dia']).year
+        df["month"] = pd.DatetimeIndex(df['Dia']).month
+        year = pd.unique(df['year'])
+        year = year.tolist()
+        year.sort()
+        month = pd.unique(df['month'])
+        month = month.tolist()
+        month.sort()
+        fecha = []
+        valor = []
+        for i in year:
+            df_pop_year = df.loc[df['year']==i]
+            for j in month:
+                pass
+                df_pop_month = df_pop_year.loc[df['month']==j]
+                suma = df_pop_month.iloc[:,2]
+                suma = suma.values.sum()
+                valor.append(suma)
+                fecha.append(str(i)+"-"+str(j))
+        P = pd.DataFrame()
+        P["Fecha"] = fecha
+        P["Valor"] = valor
+        P.plot(x='Fecha', y='Valor', kind='bar')	
+        plt.savefig("Variables.jpg")
+        return[]
+    except:
+         return []

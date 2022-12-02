@@ -2,12 +2,15 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
 from fastapi import Body
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import ingresos_schema
-from app.v1.service import Tablaingresos_services
-from app.v1.service import Tablaingresos_services
+from app.v1.service import ingresos_services
+from app.v1.service import ingresos_services
 from app.v1.schema.ingresos_schema import Ingresos_Schema,Ingresos2_Schema
 from app.v1.utils.db import get_db
+import os
+
 
 """
 Se define ruta para gastos ingresos
@@ -30,7 +33,7 @@ Se habilita la creacion de ingresos
 )
 def create_ingresos(ingresos: ingresos_schema.Ingresos_Schema = Body(...)):
 
-    return Tablaingresos_services.save_services(ingresos)
+    return ingresos_services.save_services(ingresos)
 
 """
 Se habilita la consulta de ingresos
@@ -44,7 +47,7 @@ Se habilita la consulta de ingresos
 )
 def seleccionarporusuario(ID:int):
 
-    return Tablaingresos_services.seleccionarporusuario(ID)
+    return ingresos_services.seleccionarporusuario(ID)
 
 """
 Se habilita la actualizacion de ingresos
@@ -59,7 +62,7 @@ Se habilita la actualizacion de ingresos
 )
 def put_ingresos(ID:int,ingresos: ingresos_schema.Ingresos2_Schema = Body(...)):
 
-    return Tablaingresos_services.update_services(ingresos,ID)
+    return ingresos_services.update_services(ingresos,ID)
 
 """
 Se habilita la eliminacion de ingresos
@@ -73,4 +76,18 @@ Se habilita la eliminacion de ingresos
 )
 def delete_ingresos(ID:int):
 
-    return Tablaingresos_services.delete_services(ID)
+    return ingresos_services.delete_services(ID)
+
+"""
+Se habilita creacion de imagenes de ingresos
+""" 
+@router.get(
+    "/Imagen/",
+    responses={200: {"description": "Grafica de sus gastos"}}
+)
+def Imagen(ID:int):
+    ingresos_services.suma(ID)
+    file_path = os.path.join("Ingresos.jpg")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="image/jpeg", filename="Ingresos.jpg")
+    return {"error" : "File not found!"}

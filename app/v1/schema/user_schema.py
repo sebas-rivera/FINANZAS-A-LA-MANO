@@ -1,7 +1,12 @@
 from pydantic import BaseModel
 from pydantic import Field
 from pydantic import EmailStr
+""""
+Tomamos el esquema BaseModel de la libreria pydantic para definir nuestras clases.
 
+Los atributos fueron previamente seleccionados de acuerdo con el problema a resolver,
+ademas se incluye el tipo de dato que sería cada atributo
+""" 
 class UserBase(BaseModel):
     email: EmailStr = Field(
         ...,
@@ -13,6 +18,10 @@ class UserBase(BaseModel):
         max_length=50,
         example="Nombre_Apellido"
     )
+
+"""
+Estas clases se defininen para la recepción de la información ejemplificacion del formto de la base de datos
+"""
 
 class User(UserBase):
     id: int = Field(

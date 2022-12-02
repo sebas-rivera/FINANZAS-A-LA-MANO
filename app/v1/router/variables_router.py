@@ -2,12 +2,13 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import status
 from fastapi import Body
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from app.v1.schema import variables_schema
 from app.v1.service import variables_service
-from app.v1.service import variables_service
 from app.v1.schema.variables_schema import Variables_Schema,Variables2_Schema
 from app.v1.utils.db import get_db
+import os
 
 """
 Se define ruta para gastos variables
@@ -75,3 +76,17 @@ Se habilita la eliminacion de gastos variables
 def delete_ingresos(ID:int):
 
     return variables_service.delete_services(ID)
+
+"""
+Se habilita creacion de imagenes de gastos variables
+""" 
+@router.get(
+    "/Imagen/",
+    responses={200: {"description": "Grafica de sus gastos"}}
+)
+def Imagen(ID:int):
+    variables_service.suma(ID)
+    file_path = os.path.join("Variables.jpg")
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="image/jpeg", filename="Variables.jpg")
+    return {"error" : "File not found!"}
