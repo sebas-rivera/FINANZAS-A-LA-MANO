@@ -85,8 +85,7 @@ Se habilita creacion de imagenes de gastos variables
     responses={200: {"description": "Grafica de sus gastos"}}
 )
 def Imagen(ID:int):
-    variables_service.suma(ID)
-    file_path = os.path.join("Variables.jpg")
+    file_path = variables_service.suma(ID)
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename="Variables.jpg")
     return {"error" : "File not found!"}

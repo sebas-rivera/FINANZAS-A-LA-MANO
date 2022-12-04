@@ -3,6 +3,7 @@ from app.v1.schema.variables_schema import Variables_Schema,Variables2_Schema
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 
 """
@@ -130,8 +131,10 @@ def suma(ID:int):
         P = pd.DataFrame()
         P["Fecha"] = fecha
         P["Valor"] = valor
-        P.plot(x='Fecha', y='Valor', kind='bar')	
-        plt.savefig("Variables.jpg")
-        return[]
+        P.plot(x='Fecha', y='Valor', kind='bar')
+        plt.axhline(P["Valor"].mean(), color='red', linestyle='dashed', linewidth=2)
+        plt.savefig("app/v1/image/Variables.jpg")
+        file_path = os.path.join("app/v1/image/Variables.jpg")
+        return (file_path)
     except:
-         return []
+         return None

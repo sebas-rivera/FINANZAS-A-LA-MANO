@@ -83,8 +83,7 @@ Se habilita creacion de imagenes de retiros
     responses={200: {"description": "Grafica de sus gastos"}}
 )
 def Imagen(ID:int):
-    retiros_services.suma(ID)
-    file_path = os.path.join("Retiros.jpg")
+    file_path = retiros_services.suma(ID)
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename="Retiros.jpg")
     return {"error" : "File not found!"}

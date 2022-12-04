@@ -23,12 +23,16 @@ Posterior a esto ejecute los siguientes comandos que crearan las tablas dentro d
 - `from app.v1.scripts.create_tables import create_tables`
 - `create_tables()`
 
+Finalmente ejecute el siguiente comando:
+
+-`uvicorn main:app --reload`
+
+Esto generara una direccion web que pogra abrir en su navegador de preferencia. Edite la url agrgando `/docs` al final de esta esto lo llegara al entorno de la api.
+
 ## :hammer:Funcionalidades del proyecto
 
-- `Funcionalidad 1`: descripción de la funcionalidad 1- 
-- `Funcionalidad 2`: descripción de la funcionalidad 2- 
-- `Funcionalidad 2a`: descripción de la funcionalidade 2a relacionada con la funcionalidad 2- 
-- `Funcionalidad 3`: descripción de la funcionalidad 3
+- `Funcionalidad 1`: Tener un control y manejo de la finanzas mensuales 
+- `Funcionalidad 2`: Poseer un historio de todas sus finanzas registradas
 
 ## :book:Planteamiento del problema.
 

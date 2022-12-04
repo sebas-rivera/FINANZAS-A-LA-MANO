@@ -86,8 +86,7 @@ Se habilita creacion de imagenes de ingresos
     responses={200: {"description": "Grafica de sus gastos"}}
 )
 def Imagen(ID:int):
-    ingresos_services.suma(ID)
-    file_path = os.path.join("Ingresos.jpg")
+    file_path = ingresos_services.suma(ID)
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename="Ingresos.jpg")
     return {"error" : "File not found!"}

@@ -81,11 +81,12 @@ Se habilita creacion de imagenes de gastos fijos
 """ 
 @router.get(
     "/Imagen/",
-    responses={200: {"description": "Grafica de sus gastos"}}
+    responses={200: {"description": "Grafica de sus gastos"}},
+    dependencies=[Depends(get_db)],
+    summary="Grafica los gasto fijos"
 )
 def Imagen(ID:int):
-    fijos_services.suma(ID)
-    file_path = os.path.join("Fijos.jpg")
+    file_path = fijos_services.suma(ID)
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="image/jpeg", filename="Fijos.jpg")
     return {"error" : "File not found!"}
