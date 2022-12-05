@@ -83,7 +83,9 @@ Se habilita creacion de imagenes de ingresos
 """ 
 @router.get(
     "/Imagen/",
-    responses={200: {"description": "Grafica de sus gastos"}}
+    responses={200: {"description": "Grafica de sus gastos"}},
+    dependencies=[Depends(get_db)],
+    summary="Grafica los gasto fijos"
 )
 def Imagen(ID:int):
     file_path = ingresos_services.suma(ID)
